@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Device Specifications</string>
+    <string name="click_on_scan_to_get_device_components">Click on scan to get device components</string>
+    <string name="components_hardware">Components/Hardware</string>
+    <string name="scan">Scan</string>
 </resources>
