@@ -1,14 +1,17 @@
 package com.example.devicespecifications.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.devicespecifications.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.devicespecifications.data.ComponentDetail
 import com.example.devicespecifications.databinding.ActivityMainBinding
+import com.example.devicespecifications.utils.Constants
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import java.io.File
+import java.io.FileOutputStream
 import kotlin.coroutines.CoroutineContext
 
 class MainActivity : AppCompatActivity(), CoroutineScope, ComponentAdapter.OnComponentClick {
@@ -25,6 +28,20 @@ class MainActivity : AppCompatActivity(), CoroutineScope, ComponentAdapter.OnCom
         job = Job() // create the Job
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
+    private fun writeToFile(){
+        val data = StringBuilder()
+        componentsDetails.forEach {
+            data.append(it.title)
+            data.append("\n")
+            data.append(it.subtitle)
+            data.append("\n\n")
+        }
+        val path = applicationContext.filesDir
+        val outPutStream = FileOutputStream(File(path,Constants.FILE_NAME))
+        outPutStream.write(data.toString().toByteArray())
+        outPutStream.close()
+        Snackbar.make(binding.root,"${Constants.FILE_NAME} saved successfully!", Snackbar.LENGTH_LONG).show()
     }
     override fun onClick(name: String) {
         //filter component details
