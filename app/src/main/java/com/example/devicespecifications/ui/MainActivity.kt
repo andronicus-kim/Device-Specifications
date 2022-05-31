@@ -95,8 +95,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope, ComponentAdapter.OnCom
         val filteredList = arrayListOf<ComponentDetail>()
         componentsDetails.forEach { if (it.component.contentEquals(name)) { filteredList.add(it) } }
         val intent = Intent(this,DetailsActivity::class.java).apply {
-            putExtra("title", name.lowercase().replaceFirstChar { it.uppercase() })
-            putParcelableArrayListExtra("details",filteredList)
+            putExtra(Constants.COMPONENT_NAME, name.lowercase().replaceFirstChar { it.uppercase() })
+            putParcelableArrayListExtra(Constants.COMPONENT_DETAILS,filteredList)
         }
         startActivity(intent)
     }

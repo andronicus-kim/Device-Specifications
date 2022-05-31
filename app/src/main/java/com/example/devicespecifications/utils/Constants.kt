@@ -5,4 +5,6 @@ package com.example.devicespecifications.utils
  */
 object Constants{
     const val FILE_NAME = "device_specs.txt"
+    const val COMPONENT_NAME = "component_name"
+    const val COMPONENT_DETAILS = "component_details"
 }
